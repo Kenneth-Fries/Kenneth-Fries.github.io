@@ -5,9 +5,9 @@
   width: 50%;
 }
 
-body{
+/* body{
     background-color: #cae5f6;
-}
+} */
 
 .col-lg-3{
     background-color: aliceblue;
@@ -26,4 +26,35 @@ img {
 }
 /*.nav_text{
     color: aliceblue;
-}*/
+}
+
+
+
+body, html {
+    height: 100%;
+  }
+  .bg {
+    /* The image used */
+    /* background-image: url("Freediving.jpg"); */
+  
+    /* Full height */
+    /* height: 100%; */
+  
+    /* Center and scale the image nicely */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+  /* } */
+
+  .parallax {
+    /* The image used */
+    background-image: url("Freediving.jpg");
+  
+    /* Set a specific height */
+    height: 500px;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
