@@ -170,7 +170,7 @@ function drawDataSelect(theCounty) {
         //draw options
         for (var i = 0; i < dataChoices.length; i++) {
             console.log(dataChoices[i].toString())
-            if (["deaths", "deaths_7_day", "confirmed", "confirmed_7_day"].includes(dataChoices[i])) {
+            if (["deaths", "confirmed", "confirmed_7_day"].includes(dataChoices[i])) {
                 var opt = document.createElement('option');
                 opt.innerHTML = dataChoices[i];
                 opt.value = dataChoices[i];
