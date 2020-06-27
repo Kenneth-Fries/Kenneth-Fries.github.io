@@ -36,30 +36,63 @@ function getData() {
 
 function drawStateSelect() {
     // start with clear page:
-    document.getElementById("selectBoxes").innerHTML = "";
+    document.getElementsByClassName("input-group")[0].innerHTML = "";
 
     //get data
     states = Object.keys(allMyData.US);
 
+    //draw dropdown title
+    d3.select(".input-group")
+        .append("div")
+        .attr("class", "input-group-prepend");
+    d3.select(".input-group-prepend")
+        .append("label")
+        .attr("class", "input-group-text")
+        .attr("for", "inputGroupSelect01")
+        .text("Pick a location:");
+
+
     //draw select dropdown
-    var sel = d3.select("#selectBoxes")
+    var sel = d3.select(".input-group")
         .append("select")
         .text("pick a state")
-        .attr("id", "stateSelect")
+        .attr("id", "inputGroupSelect01")
+        .attr("class", "custom-select")
         .attr("onchange", "drawCountySelect(this.value)");
 
     //draw default
-    var defaultOption = d3.select("#stateSelect")
+    var defaultOption = d3.select("#inputGroupSelect01")
         .append("option")
         .text("pick a state")
-        .attr("value", "");
+        //.attr("value", "")
+    ;
 
-    var stateSelect = document.getElementById('stateSelect');
+
+
+    // add all options
+    var stateSelect = document.getElementById('inputGroupSelect01');
     for (var i = 0; i < states.length; i++) {
         var opt = document.createElement('option');
         opt.innerHTML = states[i];
         opt.value = states[i];
         stateSelect.appendChild(opt);
+
+
+
+        /*  <div class = "input-group mb-3" >
+             <div class = "input-group-prepend" >
+             <label class = "input-group-text" for = "inputGroupSelect01" > Options 
+             </label> 
+             </div> 
+             <select class = "custom-select" id = "inputGroupSelect01" >
+             <option selected > Choose... < /option> 
+             <option value = "1" > One < /option> 
+             <option value = "2" > Two < /option> 
+             <option value = "3" > Three < /option> 
+             </select> 
+             </div> */
+
+
     }
 
 
@@ -90,13 +123,14 @@ function drawCountySelect(theState) {
         };
 
         //create county select tag
-        if (!document.getElementById('countySelect')) {
-            var countySelect = d3.select("#selectBoxes")
-                .append("select")
-                .text("pick a county")
-                .attr("id", "countySelect")
-                .attr("onchange", "drawDataSelect(this.value)");
-        }
+        /* if (!document.getElementById('countySelect')) { */
+        var countySelect = d3.select(".input-group")
+            .append("select")
+            .text("pick a county")
+            .attr("id", "countySelect")
+            .attr("class", "custom-select")
+            .attr("onchange", "myFunction(this.value)");
+        /* } */
         //console.log(allMyData.US[state]);
         counties = Object.keys(allMyData.US[state]);
 
@@ -126,9 +160,20 @@ function drawCountySelect(theState) {
         document.getElementById('plot').remove();
 
     }
+
+
 }
 
 ////////////////////////////////////////////////////////////////////////////
+
+function myFunction(thisCounty) {
+    county = thisCounty;
+    buildPlot("confirmed_7_day");
+    console.log("line 172");
+    drawDataSelect(thisCounty);
+
+
+};
 
 
 
@@ -136,20 +181,22 @@ function drawDataSelect(theCounty) {
     //get data
     county = theCounty;
     console.log("drawDataSelect keys for " + county + ' ' + state);
-    console.log(Object.keys(allMyData.US[state][county]))
+    console.log(county);
+    console.log(Object.keys(allMyData.US[state][county]));
 
     if (county) {
         //clear plot
-        if (document.getElementById('plot')) {
+        /* if (document.getElementById('plot')) {
             document.getElementById('plot').remove()
-        };
+        }; */
 
         //create county select tag
         if (!document.getElementById('dataSelect')) {
-            var dataSelect = d3.select("#selectBoxes")
+            var dataSelect = d3.select(".input-group")
                 .append("select")
                 .text("pick a dataset")
                 .attr("id", "dataSelect")
+                .attr("class", "custom-select")
                 .attr("onchange", "buildPlot(this.value)");
         }
 
@@ -160,7 +207,7 @@ function drawDataSelect(theCounty) {
 
         //clear any old data
         dataSelect.innerHTML = "";
-
+        console.log("line 209");
         //draw default
         var defaultOption = d3.select("#dataSelect")
             .append("option")
@@ -191,7 +238,7 @@ function drawDataSelect(theCounty) {
 
 function buildPlot(dataChoice) {
     // 
-
+    console.log("line 240");
     dataSetChoice = dataChoice;
 
     d3.select("body")
@@ -200,22 +247,22 @@ function buildPlot(dataChoice) {
 
     county = document.getElementById('countySelect').value
     var name = county + ' ' + state + ' ' + dataSetChoice;
-    console.log(state)
-    console.log(county)
-    console.log(Object.keys(allMyData.US[state][county]))
-        //console.log(allMyData.US[state][county].dates.map(d3.timeParse("%-m/%-d/%y")));
+    console.log(state);
+    console.log(county);
+    console.log(Object.keys(allMyData.US[state][county]));
+    //console.log(allMyData.US[state][county].dates.map(d3.timeParse("%-m/%-d/%y")));
     var dates = allMyData.US[state][county].dates.map(d3.timeParse("%-m/%-d/%y"));
     var plotData = allMyData.US[state][county][dataSetChoice];
 
     var trace1 = {
-        type: "scatter",
-        mode: "lines",
+        type: "bar",
+        //mode: "lines",
         name: name,
         x: dates,
         y: plotData,
-        line: {
-            color: "#17BECF"
-        }
+        //line: {
+        //    color: "#17BECF"
+        //}
     };
 
     var data = [trace1];
