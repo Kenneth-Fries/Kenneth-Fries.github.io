@@ -64,8 +64,10 @@ function drawStateSelect() {
     var defaultOption = d3.select("#inputGroupSelect01")
         .append("option")
         .text("pick a state")
-        //.attr("value", "")
-    ;
+        .attr("id", "option-description")
+        .attr("disabled", "True");
+
+
 
 
 
@@ -142,7 +144,11 @@ function drawCountySelect(theState) {
         var defaultOption = d3.select("#countySelect")
             .append("option")
             .text("pick a county")
-            .attr("value", "");
+            .attr("value", "")
+            .attr("id", "option-description")
+            .attr("disabled", "True");
+
+
 
         for (var i = 0; i < counties.length; i++) {
             var opt = document.createElement('option');
@@ -151,7 +157,7 @@ function drawCountySelect(theState) {
             countySelect.appendChild(opt);
         }
 
-        //county = document.getElementById('countySelect').nodeValue
+
 
 
     } else {
@@ -212,7 +218,11 @@ function drawDataSelect(theCounty) {
         var defaultOption = d3.select("#dataSelect")
             .append("option")
             .text("pick a dataset")
-            .attr("value", "");
+            .attr("value", "")
+            .attr("id", "option-description")
+            .attr("disabled", "True");
+
+
 
         //draw options
         for (var i = 0; i < dataChoices.length; i++) {
