@@ -98,33 +98,35 @@ for country in countries:
     states = df_confirmed.Province_State.unique()
     
     for n, state  in enumerate(states):
-        
-        if n < 60:      # Useful for allowing only a few states to run.
-            state_df = df_confirmed[df_confirmed.Province_State == state]
-            counties = state_df.Admin2.to_list()
-            print("    ", state, " #", len(counties), " counties.")
-            for county in counties:
-                df = state_df[state_df.Admin2 == county].T[11:]    #columns start at 12 with one datapoint per column
-                                                                   #Transpose date columns to row index
-                #df.index = pd.to_datetime(df.index)                #Set row index to datetime
-                county_data = df.diff(1).fillna(0)                 #Find delta
-                county_smoothed_7day = df.diff(7).fillna(0) / 7    #Find 7 day avg delta
-                iso2 = state_df.iso2[state_df.Admin2 == county]
-                
-                covid_cases[country][state][county].update({
-                        "confirmed" : [],
-                        "confirmed_7_day" : [],
-                        "county_name_check" : county
-                        })
-                for m, y in enumerate(county_data):
-                    for x in list(zip(county_data[y].index, county_data[y].values)):
-                        covid_cases[country][state][county]['confirmed'].append(int(x[1]))    
-                        
-                for m, y in enumerate(county_smoothed_7day):
-                    for x in list(zip(county_smoothed_7day[y].index, county_smoothed_7day[y].values)):
-                        covid_cases[country][state][county]['confirmed_7_day'].append(int(x[1]))    
-                
- 
+        if state in states_list:
+
+            
+            if n < 60:      # Useful for allowing only a few states to run.
+                state_df = df_confirmed[df_confirmed.Province_State == state]
+                counties = state_df.Admin2.to_list()
+                print("    ", state, " #", len(counties), " counties.")
+                for county in counties:
+                    df = state_df[state_df.Admin2 == county].T[11:]    #columns start at 12 with one datapoint per column
+                                                                    #Transpose date columns to row index
+                    #df.index = pd.to_datetime(df.index)                #Set row index to datetime
+                    county_data = df.diff(1).fillna(0)                 #Find delta
+                    county_smoothed_7day = df.diff(7).fillna(0) / 7    #Find 7 day avg delta
+                    iso2 = state_df.iso2[state_df.Admin2 == county]
+                    
+                    covid_cases[country][state][county].update({
+                            "confirmed" : [],
+                            "confirmed_7_day" : [],
+                            "county_name_check" : county
+                            })
+                    for m, y in enumerate(county_data):
+                        for x in list(zip(county_data[y].index, county_data[y].values)):
+                            covid_cases[country][state][county]['confirmed'].append(int(x[1]))    
+                            
+                    for m, y in enumerate(county_smoothed_7day):
+                        for x in list(zip(county_smoothed_7day[y].index, county_smoothed_7day[y].values)):
+                            covid_cases[country][state][county]['confirmed_7_day'].append(int(x[1]))    
+                    
+    
 
 
 with open('data.json', 'w') as fp:
