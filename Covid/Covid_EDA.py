@@ -26,6 +26,18 @@ df_confirmed = pd.read_csv(url_confirmed)
 df_deaths.fillna(0, inplace=True)
 df_confirmed.fillna(0, inplace=True)
 
+states_list = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado',
+         'Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho', 
+         'Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana',
+         'Maine' 'Maryland','Massachusetts','Michigan','Minnesota',
+         'Mississippi', 'Missouri','Montana','Nebraska','Nevada',
+         'New Hampshire','New Jersey','New Mexico','New York',
+         'North Carolina','North Dakota','Ohio',    
+         'Oklahoma','Oregon','Pennsylvania','Rhode Island',
+         'South  Carolina','South Dakota','Tennessee','Texas','Utah',
+         'Vermont','Virginia','Washington','West Virginia',
+         'Wisconsin','Wyoming']
+    
 
 
 
@@ -38,21 +50,22 @@ for country in countries:                         #If multiple countries
     covid_cases.update({country:{}})              #Add the new country name and create a sub-dict
     
     for state in states:
-        state_df = df_deaths[df_deaths.Province_State == state]
-        counties = state_df.Admin2.to_list()
-        covid_cases[country].update({state:{}})
-        
-        for county in counties:
-            df = state_df[state_df.Admin2 == county].T[12:]    #columns start at 12 with one datapoint per column
-                                                               #Transpose date columns to row index
-            #df.index = pd.to_datetime(df.index)                #Set row index to datetime
-            county_data = df.diff(1).fillna(0)                 #Find delta
+        if state in states_list:
+            state_df = df_deaths[df_deaths.Province_State == state]
+            counties = state_df.Admin2.to_list()
+            covid_cases[country].update({state:{}})
             
-            county_smoothed_7day = df.diff(7).fillna(0) / 7    #Find 7 day avg delta
-            
-            
-            
-            try: 
+            for county in counties:
+                df = state_df[state_df.Admin2 == county].T[12:]    #columns start at 12 with one datapoint per column
+                                                                #Transpose date columns to row index
+                #df.index = pd.to_datetime(df.index)                #Set row index to datetime
+                county_data = df.diff(1).fillna(0)                 #Find delta
+                
+                county_smoothed_7day = df.diff(7).fillna(0) / 7    #Find 7 day avg delta
+                
+                
+                
+                
                 iso2 = state_df.iso2[state_df.Admin2 == county].values[0]    #State Abbreviation
                 population = state_df.Population[state_df.Admin2 == county].values[0]   # population
                 covid_cases[country][state].update({
@@ -74,31 +87,9 @@ for country in countries:                         #If multiple countries
                     for x in list(zip(county_smoothed_7day[y].index, county_smoothed_7day[y].values)):
                         if covid_cases[country][state][county]['dates'][m] == x[0]:
                             covid_cases[country][state][county]['deaths_7_day'].append(int(x[1]))
-                        
+                            
                                                                             
-        
-
-                
-            
-            except:
-                
-                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Didn't work here !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                print(state, county)
-                covid_cases[country][state].update({
-                                                county:{
-                                                    "lat" : "Not Available",
-                                                    "long" : "Not Available",
-                                                    #"deaths" : county_data,
-                                                    #"deaths_7_day" : county_smoothed_7day,
-                                                    "abbreviation": "Not Available",
-                                                    "population": "Not Available"
-                                            }})
-                
-            
-
-        
-    
-
+ 
 
 
 countries = df_confirmed.Country_Region.unique()
