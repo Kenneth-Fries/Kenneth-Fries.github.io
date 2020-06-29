@@ -8,37 +8,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
 </head>
 
 <body>
     <div class="bg"></div>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
-            <div class="nav_text">Kenneth Fries</div>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href=https://www.linkedin.com/in/kennethfries/ ">
-                        LinkedIn
-                        <span class="sr-only ">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="/Covid/covid.html ">
-                        Covid 19
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
-    </nav>
-
+    <nav id="navbar"></nav>
+    <script src="/navbar.js"></script>
 
     <div class="parallax ">
 
@@ -59,21 +36,95 @@
                     data munging... I know numerous techniques for displaying data, using matplotlib, Seaborne, plotly, or D3. See some of my projects for examples of my work.</p>
             </div>
             <div class="col-lg-6 ">
-                <img src="https://media-exp1.licdn.com/dms/image/C4E03AQGZW03NitaIjg/profile-displayphoto-shrink_200_200/0?e=1594252800&v=beta&t=mpZjozRE7bD7tHi-mWk0Hw259bHa36zS53JV02-JJv0 ">
+                <img class="text-center" src="https://media-exp1.licdn.com/dms/image/C4E03AQGZW03NitaIjg/profile-displayphoto-shrink_200_200/0?e=1594252800&v=beta&t=mpZjozRE7bD7tHi-mWk0Hw259bHa36zS53JV02-JJv0 ">
 
-                <p>Vivamus laoreet. Nullam tincidunt adipiscing enim. Phasellus tempus. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. Fusce neque. Suspendisse faucibus, nunc et pellentesque
-                    egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Vivamus aliquet elit ac nisl. Fusce fermentum odio nec arcu. Vivamus euismod mauris. In ut quam vitae odio lacinia tincidunt. Praesent ut ligula non mi varius
-                    sagittis. Cras sagittis. Praesent ac sem eget est egestas volutpat. Vivamus consectetuer hendrerit lacus. Cras non dolor. Vivamus in erat ut urna cursus vestibulum. Fusce commodo aliquam arcu. Nam commodo suscipit quam. Quisque id
-                    odio. Praesent venenatis metus at tortor pulvinar varius. </p>
+                <p><span><h1>Kenneth Fries </h1></span>
+                    <span><h2>Data Scientist and Data Analyst </h2></span></p>
+                <p><span>Kenneth_Fries@Yahoo.com 
+                    &nbsp; (203)464-0065 
+                    &nbsp; Alameda, CA 
+                    </span></p>
+
+                <hr>
+                <p>
+                    <span><h3>Experience </h3></span></p>
+                <p>
+                    <span><h5>UC Berkeley Extension </h5></span>
+                    <span>Teacher Assistant &nbsp;Feb 2020 &nbsp;Berkeley, CA </span></p>
+                <p>
+                    <span>Data Science and Visualization </span></p>
+                <p>
+                    <span>&#9679; Help students learning data science using advanced Python, SQL, MongoDB, geoJSON and other data visualization techniques. </span>
+                    <span><h5>FedEx </h5></span>
+                    <span>Material Handler &nbsp;May 2019 &nbsp;Oakland, CA </span></p>
+                <p>
+                    <span>ULD movement and truck dispatch </span></p>
+                <p>
+                    <span>&#9679; Create and maintain database of containers and truck routes. </span></p>
+                <p>
+                    <span>&#9679; Use advanced excel techniques to automate database creation. </span>
+                    <span><h5>Metis </h5></span>
+                    <span>Data Science Fellow &nbsp;Sept.2018-May.2019 &nbsp;San Francisco, CA </span></p>
+                <p>
+                    <span>Developed several projects as part of a selective data science immersion program. </span></p>
+                <p>
+                    <span>&#9679; Projects used various types of data and applied a wide array of machine learning and statistical modeling techniques. </span></p>
+                <p>
+                    <span>&#9679; Focused on data acquisition, cleaning, aggregation, exploratory data analysis and visualization, feature engineering, and model creation &amp; validation. </span>
+                    <span><h5>Halus Power Systems </h5></span>
+                    <span>Technical Services Manager &nbsp;May 2011 to Sept.2018 &nbsp;San Leandro, CA </span></p>
+                <p>
+                    <span>Managed technical services for wind turbine operations, errors, and parts. </span></p>
+                <p>
+                    <span>&#9679; Interpret wind turbine operational data and evaluate results. </span></p>
+                <p>
+                    <span> &#9679; Create and manage databases of turbine components and procurement information. </span></p>
+                <p>
+                    <span>&#9679; Remotely accessed and diagnosed wind turbine controllers using SCADA data. </span></p>
+                <p>
+                    <span>&#9679; Performed cost benefit analysis for microgrid systems including energy storage and time of use rates. </span></p>
+                <p>
+                    <span>&#9679; Provided engineering support on wind turbine control systems, PLC&#39;s, electrical systems. </span></p>
+                <p>
+                    <span><h3>Data Projects</h3> </span></p>
+                <p>
+                    <span>Natural Gas Price Forecasting </span></p>
+                <p>
+                    <span>&#9679; </span>
+                    <span>A time series and machine learning investigation of the price of natural gas. </span>
+                    <span>The Threat of rising CO2 Emissions </span></p>
+                <p>
+                    <span>&#9679; </span>
+                    <span>Using tableau to illustrate the rise and threat of carbon dioxide. </span>
+                    <span>Covid 19 Dashboard </span></p>
+                <p>
+                    <span>&#9679;</span>
+                    <span>Kenneth-Fries.github.io/Covid/covid.html </span></p>
+                <p>
+                    <span><h3>Skills </h3></span></p>
+                <p>
+                    <span>Programming: </span>
+                    <span>Python, BASH, SQL, C++, VBA, HTML, CSS, JavaScript, R </span>
+                </p>
+                <p><span>Database: </span><span>SQL, Postgress, MongoDB, AWS, Excel, API&rsquo;s </span>
+                </p>
+                <p><span>Machine Learning: </span><span>Time Series, Supervised Learning, Unsupervised Learning, NLP, Linear Regression, OLS, Keras, CNN </span>
+                </p>
+                <p><span>Visualization: </span><span>Seaborn, Matplotlib, Bokeh, Tableau, Flask, Plotly </span></p>
+                <p><span><h3>Education</h3> </span></p>
+                <p><span>Metis Data Science Certificate of Data Science San Francisco </span></p>
+                <p><span>Accredited intensive immersion course in data science and machine learning </span></p>
+                <p><span>Murdoch University MSc Renewable Energy Perth, Australia </span></p>
+                <p><span>Dissertation: Modeling an Alkaline Fuel Cell with a Temperature Dependent Computer Simulation </span></p>
+                <p><span>St. Lawrence University BSc in Physics Canton, NY </span></p>
             </div>
             <div class="col-lg-3 ">
                 <a href=/Covid/covid.html>
                     <h3>Covid 19</h3>
                 </a>
-                <p>This is a quick little dashboard I put together to keep quick tabs on the state of the Covid 19 cases around the country. It makes use of data from John Hopkins University. I use a bash script on AWS to run daily a python script which
-                    aquires data from John Hopkins University. It then processes the data into a JSON format, which is saved, and synced via the bash script to github. There my html page makes use of the data by loading a javascript file that makes dynamic
-                    html content with dropdown selectors for user input on loaction of interest. Plotly is then utilized to display the default 7 day smoothed average data for the location's newly reported confirmed cases. Daily confirmed raw data amd
-                    daily reported deaths is also available to be ploted.
+                <p>This is a quick dashboard I put together with data from John Hopkins University to keep track of Covid 19 around the country. I use a bash script on AWS to run daily a python program which aquires the data. It then processes the data into
+                    a JSON format, which is saved and synced via the bash script to github. There my html page makes use of the data by loading a javascript file that makes dynamic html content with dropdown selectors for user input on loaction of interest.
+                    Plotly is then utilized to display the default 7 day smoothed average data for the location's newly reported confirmed cases. Daily confirmed raw data amd daily reported deaths is also available to be ploted.
                 </p>
             </div>
         </div>
