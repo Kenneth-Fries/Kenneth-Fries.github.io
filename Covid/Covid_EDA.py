@@ -133,3 +133,5 @@ with open('data.json', 'w') as fp:
     json.dump(covid_cases, fp)
 
 print("Finished " )
+
+print(df_deaths)
